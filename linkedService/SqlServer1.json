@@ -5,13 +5,13 @@
 		"annotations": [],
 		"type": "SqlServer",
 		"typeProperties": {
-			"server": "Divya-surfacepro\\SQLEXPRESS",
+			"server": "Divya-surfacepr\\SQLEXPRESS",
 			"database": "retaildatabaseproject",
 			"encrypt": "mandatory",
 			"trustServerCertificate": false,
 			"authenticationType": "Windows",
-			"userName": "Divya-surfacepro\\gorre",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI4ZDhkMGQ1Yy1jMTA2LTRjNWMtOGU2Ny0wMzA2NzI4OGE1YmUiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"userName": "Divya-surfacepr\\gorre",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI4OGZhYzE2My02YWZjLTRjNTYtOTViMS0xZDRlYTc1YTA1MWUiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
 			"referenceName": "Self-hostedruntime",
