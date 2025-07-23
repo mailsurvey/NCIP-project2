@@ -1,0 +1,9 @@
+{
+	"name": "onpremtocsvfiledatafactory",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "87feb6a8-40cc-4313-8d8a-638ee491d77e",
+		"tenantId": "2ca453e6-3400-4c0b-b6c8-1cda1f97b03a"
+	}
+}
