@@ -69,7 +69,7 @@
 								"type": "Expression"
 							},
 							"dirName": {
-								"value": "@pipeline().parameters.dir_name",
+								"value": "@concat(pipeline().parameters.dir_name, '.csv')",
 								"type": "Expression"
 							}
 						}
