@@ -66,27 +66,11 @@
 					"referenceName": "AzureBlobStorageCSVFormat",
 					"type": "LinkedServiceReference"
 				},
-				"parameters": {
-					"fileName": {
-						"type": "string"
-					},
-					"dirName": {
-						"type": "string"
-					}
-				},
 				"annotations": [],
 				"type": "DelimitedText",
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
-						"fileName": {
-							"value": "@dataset().fileName",
-							"type": "Expression"
-						},
-						"folderPath": {
-							"value": "@dataset().dirName",
-							"type": "Expression"
-						},
 						"container": "converted-table-to-csv-files"
 					},
 					"columnDelimiter": ",",
@@ -138,10 +122,7 @@
 					"type": "LinkedServiceReference"
 				},
 				"parameters": {
-					"schemaName": {
-						"type": "string"
-					},
-					"tableName": {
+					"table_name": {
 						"type": "string"
 					}
 				},
@@ -149,12 +130,8 @@
 				"type": "SqlServerTable",
 				"schema": [],
 				"typeProperties": {
-					"schema": {
-						"value": "@dataset().schemaName",
-						"type": "Expression"
-					},
 					"table": {
-						"value": "@dataset().tableName",
+						"value": "@dataset().table_name",
 						"type": "Expression"
 					}
 				}
@@ -188,80 +165,6 @@
 			"properties": {
 				"activities": [
 					{
-						"name": "CopyTablestoCSVFormat",
-						"description": "Copy SnowFlake Schema Tables into CSV format",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "SqlServerSource",
-								"queryTimeout": "02:00:00",
-								"partitionOption": "None"
-							},
-							"sink": {
-								"type": "DelimitedTextSink",
-								"storeSettings": {
-									"type": "AzureBlobStorageWriteSettings",
-									"copyBehavior": "FlattenHierarchy"
-								},
-								"formatSettings": {
-									"type": "DelimitedTextWriteSettings",
-									"quoteAllText": true,
-									"fileExtension": ".txt"
-								}
-							},
-							"enableStaging": false,
-							"translator": {
-								"type": "TabularTranslator",
-								"typeConversion": true,
-								"typeConversionSettings": {
-									"allowDataTruncation": true,
-									"treatBooleanAsNumber": false
-								}
-							}
-						},
-						"inputs": [
-							{
-								"referenceName": "SqlServerTableInput",
-								"type": "DatasetReference",
-								"parameters": {
-									"schemaName": {
-										"value": "@pipeline().parameters.schema_name",
-										"type": "Expression"
-									},
-									"tableName": {
-										"value": "@pipeline().parameters.table_name",
-										"type": "Expression"
-									}
-								}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "DelimitedTextOutput",
-								"type": "DatasetReference",
-								"parameters": {
-									"fileName": {
-										"value": "@concat(pipeline().parameters.file_name, '.csv')",
-										"type": "Expression"
-									},
-									"dirName": {
-										"value": "@pipeline().parameters.dir_name",
-										"type": "Expression"
-									}
-								}
-							}
-						]
-					},
-					{
 						"name": "Lookup1",
 						"type": "Lookup",
 						"dependsOn": [],
@@ -287,31 +190,100 @@
 							},
 							"firstRowOnly": false
 						}
+					},
+					{
+						"name": "ForEach1",
+						"type": "ForEach",
+						"dependsOn": [
+							{
+								"activity": "Lookup1",
+								"dependencyConditions": [
+									"Succeeded"
+								]
+							}
+						],
+						"userProperties": [],
+						"typeProperties": {
+							"items": {
+								"value": "@activity('Lookup1').output.value",
+								"type": "Expression"
+							},
+							"isSequential": true,
+							"activities": [
+								{
+									"name": "CopyTablestoCSVFormat",
+									"description": "Copy SnowFlake Schema Tables into CSV format",
+									"type": "Copy",
+									"dependsOn": [],
+									"policy": {
+										"timeout": "0.12:00:00",
+										"retry": 0,
+										"retryIntervalInSeconds": 30,
+										"secureOutput": false,
+										"secureInput": false
+									},
+									"userProperties": [],
+									"typeProperties": {
+										"source": {
+											"type": "SqlServerSource",
+											"queryTimeout": "02:00:00",
+											"partitionOption": "None"
+										},
+										"sink": {
+											"type": "DelimitedTextSink",
+											"storeSettings": {
+												"type": "AzureBlobStorageWriteSettings",
+												"copyBehavior": "FlattenHierarchy"
+											},
+											"formatSettings": {
+												"type": "DelimitedTextWriteSettings",
+												"quoteAllText": true,
+												"fileExtension": ".txt"
+											}
+										},
+										"enableStaging": false,
+										"translator": {
+											"type": "TabularTranslator",
+											"typeConversion": true,
+											"typeConversionSettings": {
+												"allowDataTruncation": true,
+												"treatBooleanAsNumber": false
+											}
+										}
+									},
+									"inputs": [
+										{
+											"referenceName": "SqlServerTableInput",
+											"type": "DatasetReference",
+											"parameters": {
+												"table_name": {
+													"value": "@item()",
+													"type": "Expression"
+												}
+											}
+										}
+									],
+									"outputs": [
+										{
+											"referenceName": "DelimitedTextOutput",
+											"type": "DatasetReference",
+											"parameters": {}
+										}
+									]
+								}
+							]
+						}
 					}
 				],
 				"policy": {
 					"elapsedTimeMetric": {}
 				},
-				"parameters": {
-					"schema_name": {
-						"type": "string"
-					},
-					"table_name": {
-						"type": "string"
-					},
-					"dir_name": {
-						"type": "string"
-					},
-					"file_name": {
-						"type": "string"
-					}
-				},
 				"annotations": []
 			},
 			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/SqlServerTableInputLookup')]",
 				"[concat(variables('factoryId'), '/datasets/SqlServerTableInput')]",
-				"[concat(variables('factoryId'), '/datasets/DelimitedTextOutput')]",
-				"[concat(variables('factoryId'), '/datasets/SqlServerTableInputLookup')]"
+				"[concat(variables('factoryId'), '/datasets/DelimitedTextOutput')]"
 			]
 		}
 	]
