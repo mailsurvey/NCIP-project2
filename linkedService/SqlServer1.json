@@ -1,0 +1,21 @@
+{
+	"name": "SqlServer1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"server": "Divya-surfacepro\\SQLEXPRESS",
+			"database": "retaildatabaseproject",
+			"encrypt": "mandatory",
+			"trustServerCertificate": false,
+			"authenticationType": "Windows",
+			"userName": "Divya-surfacepr\\gorre",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJhZjYzYTVlMi01MzAzLTQzZWQtOGRiOC0yMTA3YzA1ZWFjNjYiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "Self-hostedruntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
