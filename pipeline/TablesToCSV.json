@@ -29,7 +29,7 @@
 				}
 			},
 			{
-				"name": "ForEach1",
+				"name": "For Each Table",
 				"type": "ForEach",
 				"dependsOn": [
 					{
@@ -94,7 +94,11 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"table_name": {
-											"value": "@item()",
+											"value": "@item().TABLE_NAME",
+											"type": "Expression"
+										},
+										"schema_name": {
+											"value": "@item().TABLE_SCHEMA",
 											"type": "Expression"
 										}
 									}
@@ -103,7 +107,13 @@
 							"outputs": [
 								{
 									"referenceName": "DelimitedTextOutput",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"file_name": {
+											"value": "@concat(item().table_schema,'_', item().table_name,'.csv')",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}
