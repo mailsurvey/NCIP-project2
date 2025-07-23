@@ -10,8 +10,8 @@
 			"encrypt": "mandatory",
 			"trustServerCertificate": false,
 			"authenticationType": "Windows",
-			"userName": "Divya-surfacepr\\gorre",
-			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJhZjYzYTVlMi01MzAzLTQzZWQtOGRiOC0yMTA3YzA1ZWFjNjYiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+			"userName": "Divya-surfacepro\\gorre",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiI4ZDhkMGQ1Yy1jMTA2LTRjNWMtOGU2Ny0wMzA2NzI4OGE1YmUiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
 		},
 		"connectVia": {
 			"referenceName": "Self-hostedruntime",
