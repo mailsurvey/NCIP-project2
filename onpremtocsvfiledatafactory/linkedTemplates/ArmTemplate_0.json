@@ -66,11 +66,20 @@
 					"referenceName": "AzureBlobStorageCSVFormat",
 					"type": "LinkedServiceReference"
 				},
+				"parameters": {
+					"file_name": {
+						"type": "string"
+					}
+				},
 				"annotations": [],
 				"type": "DelimitedText",
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobStorageLocation",
+						"fileName": {
+							"value": "@dataset().file_name",
+							"type": "Expression"
+						},
 						"container": "converted-table-to-csv-files"
 					},
 					"columnDelimiter": ",",
@@ -124,12 +133,19 @@
 				"parameters": {
 					"table_name": {
 						"type": "string"
+					},
+					"schema_name": {
+						"type": "string"
 					}
 				},
 				"annotations": [],
 				"type": "SqlServerTable",
 				"schema": [],
 				"typeProperties": {
+					"schema": {
+						"value": "@dataset().schema_name",
+						"type": "Expression"
+					},
 					"table": {
 						"value": "@dataset().table_name",
 						"type": "Expression"
@@ -192,7 +208,7 @@
 						}
 					},
 					{
-						"name": "ForEach1",
+						"name": "For Each Table",
 						"type": "ForEach",
 						"dependsOn": [
 							{
@@ -257,7 +273,11 @@
 											"type": "DatasetReference",
 											"parameters": {
 												"table_name": {
-													"value": "@item()",
+													"value": "@item().TABLE_NAME",
+													"type": "Expression"
+												},
+												"schema_name": {
+													"value": "@item().TABLE_SCHEMA",
 													"type": "Expression"
 												}
 											}
@@ -267,7 +287,12 @@
 										{
 											"referenceName": "DelimitedTextOutput",
 											"type": "DatasetReference",
-											"parameters": {}
+											"parameters": {
+												"file_name": {
+													"value": "@concat(item().table_schema,'_', item().table_name,'.csv')",
+													"type": "Expression"
+												}
+											}
 										}
 									]
 								}
