@@ -164,6 +164,24 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('factoryName'), '/SqlServerTableInputLookup')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "SqlServer1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SqlServerTable",
+				"schema": [],
+				"typeProperties": {}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/SqlServer1')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('factoryName'), '/TablesToCSV')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
@@ -232,16 +250,43 @@
 								"type": "DatasetReference",
 								"parameters": {
 									"fileName": {
-										"value": "@pipeline().parameters.file_name",
+										"value": "@concat(pipeline().parameters.file_name, '.csv')",
 										"type": "Expression"
 									},
 									"dirName": {
-										"value": "@concat(pipeline().parameters.dir_name, '.csv')",
+										"value": "@pipeline().parameters.dir_name",
 										"type": "Expression"
 									}
 								}
 							}
 						]
+					},
+					{
+						"name": "Lookup1",
+						"type": "Lookup",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "SqlServerSource",
+								"sqlReaderQuery": "select * from retaildatabaseproject.INFORMATION_SCHEMA.TABLES\n\nwhere table_type ='BASE TABLE'",
+								"queryTimeout": "02:00:00",
+								"partitionOption": "None"
+							},
+							"dataset": {
+								"referenceName": "SqlServerTableInputLookup",
+								"type": "DatasetReference",
+								"parameters": {}
+							},
+							"firstRowOnly": false
+						}
 					}
 				],
 				"policy": {
@@ -265,7 +310,8 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/datasets/SqlServerTableInput')]",
-				"[concat(variables('factoryId'), '/datasets/DelimitedTextOutput')]"
+				"[concat(variables('factoryId'), '/datasets/DelimitedTextOutput')]",
+				"[concat(variables('factoryId'), '/datasets/SqlServerTableInputLookup')]"
 			]
 		}
 	]
