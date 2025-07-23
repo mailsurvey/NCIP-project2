@@ -65,16 +65,29 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"fileName": {
-								"value": "@pipeline().parameters.file_name",
+								"value": "@concat(pipeline().parameters.file_name, '.csv')",
 								"type": "Expression"
 							},
 							"dirName": {
-								"value": "@concat(pipeline().parameters.dir_name, '.csv')",
+								"value": "@pipeline().parameters.dir_name",
 								"type": "Expression"
 							}
 						}
 					}
 				]
+			},
+			{
+				"name": "Lookup1",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": []
 			}
 		],
 		"parameters": {
