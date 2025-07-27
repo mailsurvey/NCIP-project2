@@ -3,8 +3,8 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "dataflowfromADLStoSnowflake",
-				"type": "ExecuteDataFlow",
+				"name": "Get Metadata List",
+				"type": "GetMetadata",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
@@ -15,15 +15,84 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"dataflow": {
-						"referenceName": "dataflowfromADLStoSnowflake",
-						"type": "DataFlowReference"
+					"dataset": {
+						"referenceName": "DelimitedTextGetMetadataList",
+						"type": "DatasetReference"
 					},
-					"compute": {
-						"coreCount": 8,
-						"computeType": "General"
+					"fieldList": [
+						"childItems"
+					],
+					"storeSettings": {
+						"type": "AzureBlobFSReadSettings",
+						"enablePartitionDiscovery": false
 					},
-					"traceLevel": "Fine"
+					"formatSettings": {
+						"type": "DelimitedTextReadSettings"
+					}
+				}
+			},
+			{
+				"name": "ForEachFile",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Get Metadata List",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Get Metadata List').output.childItems",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "dataflowfromADLStoSnowflake",
+							"type": "ExecuteDataFlow",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"dataflow": {
+									"referenceName": "dataflowfromADLStoSnowflake",
+									"type": "DataFlowReference",
+									"datasetParameters": {
+										"snowflake": {
+											"table_name": {
+												"value": "@concat('staging_',item())",
+												"type": "Expression"
+											}
+										}
+									},
+									"linkedServiceParameters": {
+										"snowflake": {
+											"schemaLinkedService": {
+												"table_name": {
+													"value": "@concat('staging_',item())",
+													"type": "Expression"
+												}
+											}
+										}
+									}
+								},
+								"compute": {
+									"coreCount": 8,
+									"computeType": "General"
+								},
+								"traceLevel": "Fine"
+							}
+						}
+					]
 				}
 			}
 		],
