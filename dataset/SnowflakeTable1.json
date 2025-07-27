@@ -16,7 +16,7 @@
 		"typeProperties": {
 			"schema": "data_migration_schema",
 			"table": {
-				"value": "@concat('staging_',dataset().table_name)",
+				"value": "@dataset().table_name",
 				"type": "Expression"
 			}
 		}
