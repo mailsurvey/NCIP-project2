@@ -24,6 +24,7 @@
 					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
@@ -69,18 +70,8 @@
 									"datasetParameters": {
 										"snowflake": {
 											"table_name": {
-												"value": "@concat('staging_',item())",
+												"value": "@item()",
 												"type": "Expression"
-											}
-										}
-									},
-									"linkedServiceParameters": {
-										"snowflake": {
-											"schemaLinkedService": {
-												"table_name": {
-													"value": "@concat('staging_',item())",
-													"type": "Expression"
-												}
 											}
 										}
 									}
