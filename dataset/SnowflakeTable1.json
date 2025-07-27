@@ -1,0 +1,24 @@
+{
+	"name": "SnowflakeTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SnowflakeTosendCSVfilesfromADLS",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"table_name": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SnowflakeV2Table",
+		"schema": [],
+		"typeProperties": {
+			"schema": "data_migration_schema",
+			"table": {
+				"value": "@concat('staging_',dataset().table_name)",
+				"type": "Expression"
+			}
+		}
+	}
+}

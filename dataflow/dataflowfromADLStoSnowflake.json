@@ -1,0 +1,47 @@
+{
+	"name": "dataflowfromADLStoSnowflake",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "CSVFileforSendingtoSnowflakeInput",
+						"type": "DatasetReference"
+					},
+					"name": "adlscsvfiles"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "SnowflakeTable1",
+						"type": "DatasetReference"
+					},
+					"name": "snowflake"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          brand as string,",
+				"          brand_id as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     inferDriftedColumnTypes: true,",
+				"     ignoreNoFilesFound: false) ~> adlscsvfiles",
+				"adlscsvfiles sink(allowSchemaDrift: true,",
+				"     validateSchema: true,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     stageInsert: true) ~> snowflake"
+			]
+		}
+	}
+}
