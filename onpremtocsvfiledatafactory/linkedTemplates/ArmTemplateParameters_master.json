@@ -23,9 +23,6 @@
 		"SnowflakeTosendCSVfilesfromADLS_properties_typeProperties_database": {
 			"value": "SQL_DATA_MIGRATION_SNOWFLAKE"
 		},
-		"SnowflakeTosendCSVfilesfromADLS_properties_typeProperties_role": {
-			"value": "ACCOUNTADMIN"
-		},
 		"SnowflakeTosendCSVfilesfromADLS_properties_typeProperties_host": {
 			"value": "fuskshz-jo76028.snowflakecomputing.com"
 		},

@@ -31,10 +31,6 @@
 			"type": "string",
 			"defaultValue": "SQL_DATA_MIGRATION_SNOWFLAKE"
 		},
-		"SnowflakeTosendCSVfilesfromADLS_properties_typeProperties_role": {
-			"type": "string",
-			"defaultValue": "ACCOUNTADMIN"
-		},
 		"SnowflakeTosendCSVfilesfromADLS_properties_typeProperties_host": {
 			"type": "string",
 			"defaultValue": "fuskshz-jo76028.snowflakecomputing.com"
@@ -95,9 +91,6 @@
 					},
 					"SnowflakeTosendCSVfilesfromADLS_properties_typeProperties_database": {
 						"value": "[parameters('SnowflakeTosendCSVfilesfromADLS_properties_typeProperties_database')]"
-					},
-					"SnowflakeTosendCSVfilesfromADLS_properties_typeProperties_role": {
-						"value": "[parameters('SnowflakeTosendCSVfilesfromADLS_properties_typeProperties_role')]"
 					},
 					"SnowflakeTosendCSVfilesfromADLS_properties_typeProperties_host": {
 						"value": "[parameters('SnowflakeTosendCSVfilesfromADLS_properties_typeProperties_host')]"

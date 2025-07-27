@@ -31,10 +31,6 @@
 			"type": "string",
 			"defaultValue": "SQL_DATA_MIGRATION_SNOWFLAKE"
 		},
-		"SnowflakeTosendCSVfilesfromADLS_properties_typeProperties_role": {
-			"type": "string",
-			"defaultValue": "ACCOUNTADMIN"
-		},
 		"SnowflakeTosendCSVfilesfromADLS_properties_typeProperties_host": {
 			"type": "string",
 			"defaultValue": "fuskshz-jo76028.snowflakecomputing.com"
@@ -218,12 +214,7 @@
 								"parameters": {},
 								"datasetParameters": {
 									"adlscsvfiles": {},
-									"snowflake": {
-										"table_name": {
-											"value": "@concat('staging_', pipeline().parameters.table_name)",
-											"type": "Expression"
-										}
-									}
+									"snowflake": {}
 								}
 							},
 							"staging": {},
@@ -237,11 +228,6 @@
 				],
 				"policy": {
 					"elapsedTimeMetric": {}
-				},
-				"parameters": {
-					"table_name": {
-						"type": "string"
-					}
 				},
 				"annotations": []
 			},
@@ -332,20 +318,12 @@
 					"referenceName": "SnowflakeTosendCSVfilesfromADLS",
 					"type": "LinkedServiceReference"
 				},
-				"parameters": {
-					"table_name": {
-						"type": "string"
-					}
-				},
 				"annotations": [],
 				"type": "SnowflakeV2Table",
 				"schema": [],
 				"typeProperties": {
-					"schema": "data_migration_schema",
-					"table": {
-						"value": "@dataset().table_name",
-						"type": "Expression"
-					}
+					"schema": "DATA_MIGRATION_SCHEMA",
+					"table": "STAGING_DIM_BRAND"
 				}
 			},
 			"dependsOn": [
@@ -444,11 +422,10 @@
 				"type": "SnowflakeV2",
 				"typeProperties": {
 					"authenticationType": "Basic",
-					"accountIdentifier": "JO76028",
+					"accountIdentifier": "tc39476.canada-central.azure",
 					"user": "adminuser",
 					"database": "[parameters('SnowflakeTosendCSVfilesfromADLS_properties_typeProperties_database')]",
 					"warehouse": "COMPUTE_WH",
-					"role": "[parameters('SnowflakeTosendCSVfilesfromADLS_properties_typeProperties_role')]",
 					"host": "[parameters('SnowflakeTosendCSVfilesfromADLS_properties_typeProperties_host')]",
 					"password": {
 						"type": "SecureString",
