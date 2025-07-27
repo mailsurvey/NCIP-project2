@@ -17,15 +17,7 @@
 				"typeProperties": {
 					"dataflow": {
 						"referenceName": "dataflowfromADLStoSnowflake",
-						"type": "DataFlowReference",
-						"datasetParameters": {
-							"snowflake": {
-								"table_name": {
-									"value": "@concat('staging_', pipeline().parameters.table_name)",
-									"type": "Expression"
-								}
-							}
-						}
+						"type": "DataFlowReference"
 					},
 					"compute": {
 						"coreCount": 8,
@@ -35,11 +27,6 @@
 				}
 			}
 		],
-		"parameters": {
-			"table_name": {
-				"type": "string"
-			}
-		},
 		"annotations": []
 	}
 }
