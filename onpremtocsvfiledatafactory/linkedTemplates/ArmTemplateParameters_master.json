@@ -8,8 +8,26 @@
 		"AzureBlobStorageCSVFormat_connectionString": {
 			"value": ""
 		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
+		"SnowflakeTosendCSVfilesfromADLS_password": {
+			"value": ""
+		},
 		"SqlServer1_password": {
 			"value": ""
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://blobstorageforcsvfiles.dfs.core.windows.net/"
+		},
+		"SnowflakeTosendCSVfilesfromADLS_properties_typeProperties_database": {
+			"value": "SQL_DATA_MIGRATION_SNOWFLAKE"
+		},
+		"SnowflakeTosendCSVfilesfromADLS_properties_typeProperties_role": {
+			"value": "ACCOUNTADMIN"
+		},
+		"SnowflakeTosendCSVfilesfromADLS_properties_typeProperties_host": {
+			"value": "fuskshz-jo76028.snowflakecomputing.com"
 		},
 		"SqlServer1_properties_typeProperties_server": {
 			"value": "tcp:Divya-surfacepr\\\\SQLEXPRESS,1433"
