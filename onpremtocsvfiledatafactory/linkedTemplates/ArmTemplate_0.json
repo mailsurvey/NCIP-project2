@@ -444,7 +444,7 @@
 						}
 					},
 					{
-						"name": "ForEach1",
+						"name": "ForEachForNormalizedFolder",
 						"type": "ForEach",
 						"dependsOn": [
 							{
@@ -463,7 +463,7 @@
 							"isSequential": true,
 							"activities": [
 								{
-									"name": "Append variable1",
+									"name": "Append variableForNormalizedFolder",
 									"type": "AppendVariable",
 									"dependsOn": [],
 									"userProperties": [],
@@ -479,7 +479,7 @@
 						}
 					},
 					{
-						"name": "ForEach2",
+						"name": "ForEachForTransformedFolder",
 						"type": "ForEach",
 						"dependsOn": [
 							{
@@ -498,7 +498,7 @@
 							"isSequential": true,
 							"activities": [
 								{
-									"name": "Append variable2",
+									"name": "Append variableForTransformedFolder",
 									"type": "AppendVariable",
 									"dependsOn": [],
 									"userProperties": [],
@@ -514,17 +514,18 @@
 						}
 					},
 					{
-						"name": "ForEach3",
+						"name": "LoopingThroughEachFile",
+						"description": "Appending both folders and looping through each file",
 						"type": "ForEach",
 						"dependsOn": [
 							{
-								"activity": "ForEach1",
+								"activity": "ForEachForNormalizedFolder",
 								"dependencyConditions": [
 									"Succeeded"
 								]
 							},
 							{
-								"activity": "ForEach2",
+								"activity": "ForEachForTransformedFolder",
 								"dependencyConditions": [
 									"Succeeded"
 								]
@@ -539,11 +540,11 @@
 							"isSequential": true,
 							"activities": [
 								{
-									"name": "Script1",
+									"name": "CopyDataFromADLSToSnowFlake",
 									"type": "Script",
 									"dependsOn": [
 										{
-											"activity": "Set variable2",
+											"activity": "TransformingTheFileNametoSnoFlakeTableName",
 											"dependencyConditions": [
 												"Succeeded"
 											]
@@ -575,7 +576,7 @@
 									}
 								},
 								{
-									"name": "Set variable1",
+									"name": "CurrentFileNameFromADLS",
 									"type": "SetVariable",
 									"dependsOn": [],
 									"policy": {
@@ -592,11 +593,11 @@
 									}
 								},
 								{
-									"name": "Set variable2",
+									"name": "TransformingTheFileNametoSnoFlakeTableName",
 									"type": "SetVariable",
 									"dependsOn": [
 										{
-											"activity": "Set variable1",
+											"activity": "CurrentFileNameFromADLS",
 											"dependencyConditions": [
 												"Succeeded"
 											]
