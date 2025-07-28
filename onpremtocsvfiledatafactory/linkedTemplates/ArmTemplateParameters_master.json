@@ -21,7 +21,7 @@
 			"value": "https://blobstorageforcsvfiles.dfs.core.windows.net/"
 		},
 		"SnowflakeTosendCSVfilesfromADLS_properties_typeProperties_database": {
-			"value": "SQL_DATA_MIGRATION_SNOWFLAKE"
+			"value": "ADLS_SNOWFLAKE_INTEGRATION_DB"
 		},
 		"SnowflakeTosendCSVfilesfromADLS_properties_typeProperties_host": {
 			"value": "fuskshz-jo76028.snowflakecomputing.com"

@@ -29,7 +29,7 @@
 		},
 		"SnowflakeTosendCSVfilesfromADLS_properties_typeProperties_database": {
 			"type": "string",
-			"defaultValue": "SQL_DATA_MIGRATION_SNOWFLAKE"
+			"defaultValue": "ADLS_SNOWFLAKE_INTEGRATION_DB"
 		},
 		"SnowflakeTosendCSVfilesfromADLS_properties_typeProperties_host": {
 			"type": "string",
