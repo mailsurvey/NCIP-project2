@@ -68,10 +68,26 @@
 									"referenceName": "dataflowfromADLStoSnowflake",
 									"type": "DataFlowReference",
 									"datasetParameters": {
+										"adlscsvfiles": {
+											"file_name": {
+												"value": "@item().name",
+												"type": "Expression"
+											}
+										},
 										"snowflake": {
 											"table_name": {
-												"value": "@item()",
+												"value": "@substring(replace(item().name, '.csv', ''), 0, lastIndexOf(replace(item().name, '.csv', ''), '_'))",
 												"type": "Expression"
+											}
+										}
+									},
+									"linkedServiceParameters": {
+										"adlscsvfiles": {
+											"schemaLinkedService": {
+												"file_name": {
+													"value": "@item().name",
+													"type": "Expression"
+												}
 											}
 										}
 									}
