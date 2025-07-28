@@ -263,11 +263,26 @@
 											"type": "DataFlowReference",
 											"parameters": {},
 											"datasetParameters": {
-												"adlscsvfiles": {},
+												"adlscsvfiles": {
+													"file_name": {
+														"value": "@item().name",
+														"type": "Expression"
+													}
+												},
 												"snowflake": {
 													"table_name": {
-														"value": "@item()",
+														"value": "@substring(replace(item().name, '.csv', ''), 0, lastIndexOf(replace(item().name, '.csv', ''), '_'))",
 														"type": "Expression"
+													}
+												}
+											},
+											"linkedServiceParameters": {
+												"adlscsvfiles": {
+													"schemaLinkedService": {
+														"file_name": {
+															"value": "@item().name",
+															"type": "Expression"
+														}
 													}
 												}
 											}
@@ -303,12 +318,20 @@
 					"referenceName": "AzureDataLakeStorage1",
 					"type": "LinkedServiceReference"
 				},
+				"parameters": {
+					"file_name": {
+						"type": "string"
+					}
+				},
 				"annotations": [],
 				"type": "DelimitedText",
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"fileName": "dbo_dim_brand_20250726232426.csv",
+						"fileName": {
+							"value": "@dataset().file_name",
+							"type": "Expression"
+						},
 						"folderPath": "snowflake-tables",
 						"fileSystem": "normalized-tables"
 					},
@@ -632,6 +655,18 @@
 				"[concat(variables('factoryId'), '/datasets/CSVFileforSendingtoSnowflakeInput')]",
 				"[concat(variables('factoryId'), '/datasets/SnowflakeTable1')]"
 			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": []
 		}
 	]
 }
