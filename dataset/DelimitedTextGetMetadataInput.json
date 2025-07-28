@@ -1,0 +1,32 @@
+{
+	"name": "DelimitedTextGetMetadataInput",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "snowflake-tables",
+				"fileSystem": "normalized-tables"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "brand",
+				"type": "String"
+			},
+			{
+				"name": "brand_id",
+				"type": "String"
+			}
+		]
+	}
+}

@@ -1,0 +1,40 @@
+{
+	"name": "DelimitedTextGetmetadataFortransformedData",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"folderPath": "transformed-snowflake-tables",
+				"fileSystem": "normalized-tables"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "store_id",
+				"type": "String"
+			},
+			{
+				"name": "product_sold",
+				"type": "String"
+			},
+			{
+				"name": "total_quantity_sold",
+				"type": "String"
+			},
+			{
+				"name": "total_amount_sold",
+				"type": "String"
+			}
+		]
+	}
+}
