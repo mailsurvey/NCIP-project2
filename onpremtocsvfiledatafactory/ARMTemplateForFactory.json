@@ -500,7 +500,7 @@
 											{
 												"type": "Query",
 												"text": {
-													"value": "@concat(\n  'COPY INTO ADLS_SNOWFLAKE_INTEGRATION_DB.DATAADLS_MIGRATION.', \n   variables('var_tablename'),\n  ' FROM @STAGE_AZURE_CONTAINER/',\n  variables('var_currentFileName'),\n  ' FILE_FORMAT = (TYPE = CSV, FIELD_OPTIONALLY_ENCLOSED_BY = ''\"'', SKIP_HEADER = 1)',\n  ' ON_ERROR = CONTINUE;'\n)\n\n\n\n",
+													"value": "@concat(\n  'USE DATABASE ADLS_SNOWFLAKE_INTEGRATION_DB;',\n  ' USE SCHEMA DATAADLS_MIGRATION;',\n  'COPY INTO ADLS_SNOWFLAKE_INTEGRATION_DB.DATAADLS_MIGRATION.', \n   variables('var_tablename'),\n  ' FROM @STAGE_AZURE_CONTAINER/',\n  variables('var_currentFileName'),\n  ' FILE_FORMAT = (TYPE = CSV, FIELD_OPTIONALLY_ENCLOSED_BY = ''\"'', SKIP_HEADER = 1)',\n  ' ON_ERROR = CONTINUE;'\n)\n\n\n\n",
 													"type": "Expression"
 												}
 											}
