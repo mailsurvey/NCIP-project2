@@ -214,7 +214,7 @@
 								"value": "@variables('var_allFiles')",
 								"type": "Expression"
 							},
-							"isSequential": false,
+							"isSequential": true,
 							"activities": [
 								{
 									"name": "CopyDataFromADLSToSnowFlake",
