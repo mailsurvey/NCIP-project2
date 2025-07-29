@@ -15,6 +15,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage1'"
 		},
+		"AzureDatabricks1_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'AzureDatabricks1'"
+		},
 		"SnowflakeTosendCSVfilesfromADLS_password": {
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'SnowflakeTosendCSVfilesfromADLS'"
@@ -26,6 +30,10 @@
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://blobstorageforcsvfiles.dfs.core.windows.net/"
+		},
+		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0726-213913-sywbs97m"
 		},
 		"SnowflakeTosendCSVfilesfromADLS_properties_typeProperties_database": {
 			"type": "string",
@@ -80,6 +88,9 @@
 					"AzureDataLakeStorage1_accountKey": {
 						"value": "[parameters('AzureDataLakeStorage1_accountKey')]"
 					},
+					"AzureDatabricks1_accessToken": {
+						"value": "[parameters('AzureDatabricks1_accessToken')]"
+					},
 					"SnowflakeTosendCSVfilesfromADLS_password": {
 						"value": "[parameters('SnowflakeTosendCSVfilesfromADLS_password')]"
 					},
@@ -88,6 +99,9 @@
 					},
 					"AzureDataLakeStorage1_properties_typeProperties_url": {
 						"value": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]"
+					},
+					"AzureDatabricks1_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('AzureDatabricks1_properties_typeProperties_existingClusterId')]"
 					},
 					"SnowflakeTosendCSVfilesfromADLS_properties_typeProperties_database": {
 						"value": "[parameters('SnowflakeTosendCSVfilesfromADLS_properties_typeProperties_database')]"

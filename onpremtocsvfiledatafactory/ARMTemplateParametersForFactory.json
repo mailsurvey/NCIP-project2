@@ -11,6 +11,9 @@
 		"AzureDataLakeStorage1_accountKey": {
 			"value": ""
 		},
+		"AzureDatabricks1_accessToken": {
+			"value": ""
+		},
 		"SnowflakeTosendCSVfilesfromADLS_password": {
 			"value": ""
 		},
@@ -19,6 +22,9 @@
 		},
 		"AzureDataLakeStorage1_properties_typeProperties_url": {
 			"value": "https://blobstorageforcsvfiles.dfs.core.windows.net/"
+		},
+		"AzureDatabricks1_properties_typeProperties_existingClusterId": {
+			"value": "0726-213913-sywbs97m"
 		},
 		"SnowflakeTosendCSVfilesfromADLS_properties_typeProperties_database": {
 			"value": "ADLS_SNOWFLAKE_INTEGRATION_DB"
