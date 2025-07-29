@@ -121,8 +121,8 @@
 				}
 			},
 			{
-				"name": "Notebook1",
-				"type": "DatabricksNotebook",
+				"name": "Job1",
+				"type": "DatabricksJob",
 				"dependsOn": [
 					{
 						"activity": "For Each Table",
@@ -140,10 +140,10 @@
 				},
 				"userProperties": [],
 				"typeProperties": {
-					"notebookPath": "/Users/ngorrepati89@gmail.com/Transformations 2025-07-26 12:31:24"
+					"jobId": "289427466610570"
 				},
 				"linkedServiceName": {
-					"referenceName": "AzureDatabricks1",
+					"referenceName": "AzureDatabricks2",
 					"type": "LinkedServiceReference"
 				}
 			}
