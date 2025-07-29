@@ -1,5 +1,5 @@
 {
-	"name": "trigger1",
+	"name": "TumblingWindowforPipeline",
 	"properties": {
 		"annotations": [],
 		"runtimeState": "Started",
