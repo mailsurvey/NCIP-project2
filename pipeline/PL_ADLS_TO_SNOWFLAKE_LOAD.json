@@ -274,7 +274,7 @@
 												{
 													"type": "Query",
 													"text": {
-														"value": "call sp_merge_staging_and_fact_sales()\n",
+														"value": "call ADLS_SNOWFLAKE_INTEGRATION_DB.DATAADLS_MIGRATION.sp_merge_staging_and_fact_sales()\n",
 														"type": "Expression"
 													}
 												}
