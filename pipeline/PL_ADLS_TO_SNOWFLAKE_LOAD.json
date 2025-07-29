@@ -156,7 +156,7 @@
 						"value": "@variables('var_allFiles')",
 						"type": "Expression"
 					},
-					"isSequential": false,
+					"isSequential": true,
 					"activities": [
 						{
 							"name": "CopyDataFromADLSToSnowFlake",
@@ -277,6 +277,9 @@
 														"value": "call ADLS_SNOWFLAKE_INTEGRATION_DB.DATAADLS_MIGRATION.sp_merge_staging_and_fact_sales()\n",
 														"type": "Expression"
 													}
+												},
+												{
+													"type": "Query"
 												}
 											],
 											"scriptBlockExecutionTimeout": "02:00:00"
