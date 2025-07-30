@@ -249,7 +249,7 @@
 							"userProperties": [],
 							"typeProperties": {
 								"expression": {
-									"value": "@equals(variables('var_currentFileName'), item().name\n )\n",
+									"value": "@equals(variables('var_tablename'), 'DBO_DIM_STAGING_FACT_SALES_INCREMENTAL_LOADS'\n )",
 									"type": "Expression"
 								},
 								"ifTrueActivities": [
