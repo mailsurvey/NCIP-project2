@@ -323,7 +323,7 @@
 									"userProperties": [],
 									"typeProperties": {
 										"expression": {
-											"value": "@equals(variables('var_currentFileName'), item().name\n )\n",
+											"value": "@equals(variables('var_tablename'), 'DBO_DIM_STAGING_FACT_SALES_INCREMENTAL_LOADS'\n )",
 											"type": "Expression"
 										},
 										"ifTrueActivities": [
@@ -1176,14 +1176,7 @@
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"annotations": [],
-				"runtimeState": "Started",
-				"pipeline": {
-					"pipelineReference": {
-						"referenceName": "PL_master",
-						"type": "PipelineReference"
-					},
-					"parameters": {}
-				},
+				"runtimeState": "Stopped",
 				"type": "TumblingWindowTrigger",
 				"typeProperties": {
 					"frequency": "Minute",
@@ -1197,9 +1190,7 @@
 					"dependsOn": []
 				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/pipelines/PL_master')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/Self-hostedruntime')]",
